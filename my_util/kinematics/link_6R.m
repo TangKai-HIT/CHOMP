@@ -22,9 +22,10 @@ classdef link_6R < handle
             obj.tipSE3 = tipSE3;
         end
         
-        function [tipSE3, Jacob_b] = updateFK(obj)
+        function [tipSE3, Jacob_b] = updateFK(obj, jointAngles)
             %METHOD1 Summary of this method goes here
             %   Detailed explanation goes here
+            obj.jointAngles = jointAngles;
             Jacob_b = zeros(6,6);
             AdTrans = SE3.exp(zeros(6,1));
             TransFK = SE3.exp(zeros(6,1));
@@ -35,7 +36,7 @@ classdef link_6R < handle
                     Jacob_b(:, i) = AdTrans.Ad() * obj.jointScrewAxis(:, i);
                 end
                 
-                TransFK = TransFK * SE3.exp(obj.jointAngles(7-i) * obj.jointScrewAxis(:, 7-i))
+                TransFK = TransFK * SE3.exp(obj.jointAngles(7-i) * obj.jointScrewAxis(:, 7-i));
                 AdTrans = AdTrans * SE3.exp(-obj.jointAngles(i) * obj.jointScrewAxis(:, i)); %update SE3 trans
             end
             
