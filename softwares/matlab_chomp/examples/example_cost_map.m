@@ -57,7 +57,8 @@ options.MinIter = 1;
 options.MaxIter = 100;
 options.TolFun = 1e-3;
 options.Metric = A;
-options.MetricInverse = inv(A);
+% options.Metric = eye(size(xi,1)-2);
+options.MetricInverse = inv(options.Metric);
 options.DecreaseStepSize = 0;
 
 %% Perform chomp
