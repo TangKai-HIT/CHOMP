@@ -16,7 +16,10 @@ function xi = constrained_update_equality( xi, grad, step_size, constraints, opt
 Minv = options.MetricInverse;
 
 % Constrained update rule
-for dim = 1:length(constraints.Ceq)
+numDim = length(constraints.Ceq);
+lambda_set = cell(numDim); %init
+
+for dim = 1:numDim
     Ceq = constraints.Ceq{dim};
     deq = constraints.deq{dim};
 
@@ -28,7 +31,7 @@ for dim = 1:length(constraints.Ceq)
 end
 
 xi = xi - step_size*(Minv*(grad));
-for dim = 1:length(constraints.Ceq)
+for dim = 1:numDim
     Ceq = constraints.Ceq{dim};
     if (~isempty(Ceq))
         xi(:,dim) = xi(:,dim) - step_size*Minv*(Ceq'*lambda_set{dim});
