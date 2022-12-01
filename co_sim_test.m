@@ -112,6 +112,7 @@ while ~sim.callScriptFunction('checkReachCondition', UR5_script, endPoint, 1e-2)
     %     [tipSE3, Jacob_b] = UR5_kine.updateFK(jointAngles);  
 end
 disp('Reached end of the path!')
+sim.removeObject(endPoint) %remove end point
 
 %% Press any button to end simulation
 disp('Press any button to end simulation...');
