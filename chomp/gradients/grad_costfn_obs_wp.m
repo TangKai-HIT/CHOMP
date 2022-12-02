@@ -1,8 +1,8 @@
-function grad = grad_costfn_obs_wp( body_pt, body_disField, body_disGradient, body_jacobian, dt, body_p_start )
+function grad = grad_costfn_obs_wp( body_pt, disFieldfn, disGradfn, body_jacobian, dt, body_p_start )
 %GRAD_COSTFN_OBS_WP Get gradient of obstacle cost functions
 %   body_pt: n x ptDim way points set on sampled body points (1 X B cell array {n X ptDim})
-%   body_disField: distance field evaluated on body way points (1 X B cell array {n X 1})
-%   body_disGradient: gradient of distance field evaluated on body way points (1 X B cell array {n X ptDim})
+%   disFieldfn: function handle for evaluating distance field on way points (func_handle @(xi) => n X 1)
+%   disGradfn: function handle for evaluating distance field gradient on way points (func_handle @(xi)  => n X ptDim )
 %   body_jacobian: jacobian matrices of body points w.r.t robot config (1 X B cell array {ptDim X configDim} or [])
 %   dt: sample time
 %   body_p_start: (optional) start coordinate of body way points (1 X B cell array)
@@ -16,8 +16,8 @@ for i=1:length(body_pt)
         body_p_start{i} = body_pt{i}(1,:);
     end
 
-    c = body_disField{i}; % n X 1
-    delta_c = body_disGradient{i}; % n X ptDim
+    c = disFieldfn(body_pt{i}); % n X 1
+    delta_c = disGradfn(body_pt{i}); % n X ptDim
     
     n = 1/dt;
     xi = body_pt{i};
