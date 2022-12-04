@@ -14,11 +14,11 @@ for dim = 1:length(lb)
     
     if (~isempty(lb{dim}))
         constraints.C{dim} = [constraints.C{dim}; -eye(n)];
-        constraints.d{dim} = [constraints.d{dim}; -lb{dim}*ones(n,1)]; 
+        constraints.d{dim} = [constraints.d{dim}; -lb{dim}.*ones(n,1)]; 
     end
     if (~isempty(ub{dim}))
         constraints.C{dim} = [constraints.C{dim}; eye(n)];
-        constraints.d{dim} = [constraints.d{dim}; ub{dim}*ones(n,1)];
+        constraints.d{dim} = [constraints.d{dim}; ub{dim}.*ones(n,1)];
     end
 end
 
