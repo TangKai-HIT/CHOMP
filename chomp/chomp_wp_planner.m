@@ -73,17 +73,18 @@ classdef chomp_wp_planner < handle
         end
 
         %% SOLVE
-        function [optim_traj, cost_best, exitflag, output] = solve(obj, method)
+        function [optim_traj, cost_best, exitflag, output] = solve(obj)
             %SOLVE iteratively solve the squential quadratic programming problem
             %   Detailed explanation goes here
-            if isempty(obj.constraints.C) && isempty(obj.constraints.lb) && isempty(obj.constraints.ub)
+            if isempty(obj.constraints.C) && isempty(obj.constraints.lb) && isempty(obj.constraints.ub) %only equality constraint
                 [optim_traj , cost_best, exitflag, output ] = chomp_CovGradDescent( obj.init_traj, obj.boudary_pt_Id, ...
                                                                                                          obj.cost_func, obj.grad_func, obj.constraints, obj.options );
             else % with inequality constraint
-                if ~exist("method","var")
-                    method = 'qp';
+                if contains(obj.options.InequConstraintAlgorithm, 'qp') %using QP
+                    [ optim_traj, cost_best, exitflag, output ] = chomp_QP( obj.init_traj, obj.boudary_pt_Id,...
+                                                                                            obj.cost_func, obj.grad_func, obj.constraints, obj.options );
                 end
-                
+
             end
             
             obj.solverLog = output;
