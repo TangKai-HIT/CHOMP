@@ -1,0 +1,11 @@
+qp_full:
+solve time: 0.0292 (s)
+iterations: 21
+
+qp_sparse:
+solve time: 0.1332 (s)
+iterations: 21
+
+qp_start:
+solve time: 0.0452 (s)
+iterations: 23
