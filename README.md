@@ -1,8 +1,25 @@
-# CHOMP, Learning from Demonstration & Trajectory deformation  
+# CHOMP guided by demonstrations
 
 *Note:*
-The codes in chomp/ are written and improved upon CMU AIRLAB's chomp toolbox.
+The codes in `chomp/` are written and improved upon CMU AIRLAB's chomp toolbox.
 
 **Required:**  
 - Peter Coke rvctools
 - Coppeliasim 4.4
+
+## Test Logs:
+### 1. `chomp_2DPoint2_fixedbound`
+Use trapezoidal velocity profile trajectory as initial condition.  
+
+*Note: velocity boundary condition cannot be held by partitioned 2-order smooth matrix. (use full smooth matrix instead)*  
+
+**Parameter tuning**: Tune the smooth cost parameter to make the smooth cost at the same **order of magnitude** as the obstacle cost, holding the order of magnitude **around 10**. 
+- fine parameters: $\lambda_1=10^{-7}, \lambda_2=100, \eta=10^7, N=200$
+
+### 2. `chomp_2DPoint3_fixedbound`
+Same as above.
+- fine parameters: $\lambda_1=10^{-7}, \lambda_2=200, \eta=1.5\times 10^{10}, N=200$
+
+### 3. `chomp_2DPoint1_box_inequ`
+- No need to use sparse QP for such small scale problem.
+- Did not see significant computational advance of QP active-set warmstart.
