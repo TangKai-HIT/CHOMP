@@ -11,6 +11,6 @@ options.MinIter = 1;
 options.TolFun = 1e-3;
 options.TolCon = 1e-3;
 options.ProjNewtStepSize = 0.05;
-options.ConstraintAlgorithm = 'proj_newton'; %Choices {'proj_newton', 'qp'}
+options.InequConstraintAlgorithm = 'qp_full'; %Choices {'proj_newton', 'qp_full',  'qp_sparse', 'qp_warmstart'}
 options.FreeEndPoint = 0;
 end
