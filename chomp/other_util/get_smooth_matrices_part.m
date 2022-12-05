@@ -31,7 +31,7 @@ switch order
     case 3
         E_0  = -1 * p_init;
         E_d  = -3 * p_end;
-        K = K(3:end-1, :);
+        K = K(3:end-2, :);
         numRows = n;
 
 end
