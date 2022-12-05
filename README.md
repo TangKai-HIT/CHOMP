@@ -3,11 +3,11 @@
 *Note:*
 The codes in `chomp/` are written and improved upon CMU AIRLAB's chomp toolbox.
 
-**Required:**  
+**3D traj tracking demo requires:**  
 - Peter Coke rvctools
 - Coppeliasim 4.4
 
-## Test Logs:
+## Some Test Logs:
 ### 1. `chomp_2DPoint2_fixedbound`
 Use trapezoidal velocity profile trajectory as initial condition.  
 
@@ -22,4 +22,8 @@ Same as above.
 
 ### 3. `chomp_2DPoint1_box_inequ`
 - No need to use sparse QP for such small scale problem.
-- Did not see significant computational advance of QP active-set warmstart.
+- Did not see significant computational advance of QP active-set warmstart for small number of constraints.
+
+### 4. `chomp_2DPoint3_fixedbound2`
+As shown in `chomp_2DPoint3_fixedbound.m`, both velocity and acceleration boundary conditions of the deformed trajectory can be held by using **3-order forward differetial matrix** as the metric.  
+This demo shows the combinition of using 3-order forward differetial metric and 1-order smoothness cost function (equivalent to **shortest path**)
