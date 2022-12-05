@@ -40,10 +40,11 @@ classdef chomp_wp_planner < handle
             obj.constraints = chomp_set_constraints(obj.dim);
                
             % record boundary points 
-            if isFullSmoothMatrix % use full smooth matrix?
-                reduceNum = smooth_order;
-            else
-                reduceNum = 1;
+            reduceNum = smooth_order; %default
+            if nargin > 3 
+                if ~isFullSmoothMatrix
+                    reduceNum = 1;
+                end
             end
 
             if isEndPtFixed % fixed end point?
@@ -51,10 +52,10 @@ classdef chomp_wp_planner < handle
                 obj.boudary_pt_Id{1} = 1 : reduceNum;
                 obj.boudary_pt_Id{2} =  (obj.total_pt-reduceNum+1) : obj.total_pt;
                 obj.options.FreeEndPoint = 0;
-            else
-                obj.num_pt = obj.total_pt - reduceNum;
-                obj.boudary_pt_Id{1} = 1 : reduceNum;
-                obj.options.FreeEndPoint = 1;
+            else %free end point (free goal)
+                    obj.num_pt = obj.total_pt - reduceNum;
+                    obj.boudary_pt_Id{1} = 1 : reduceNum;
+                    obj.options.FreeEndPoint = 1;
             end
 
         end
