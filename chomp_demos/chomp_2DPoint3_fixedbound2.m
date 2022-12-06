@@ -69,7 +69,7 @@ grad_func = @(xi) lambda1 * grad_costfn_smooth_wp( xi, A1, b1 ,dt, 1) + lambda2 
 chomp2D.set_cost_grad_fn(cost_func, grad_func);
 
 %% Set options
-chomp2D.options.Eta = 1.2*1e10; % for full smooth matrix case 
+chomp2D.options.Eta = 3*1e9; % for full smooth matrix case 
 chomp2D.options.MinIter = 1;
 chomp2D.options.MaxIter = 500;
 chomp2D.options.TolFun = 1e-3;
