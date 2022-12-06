@@ -84,8 +84,9 @@ classdef chomp_wp_planner < handle
                 if contains(obj.options.InequConstraintAlgorithm, 'qp') %using QP
                     [ optim_traj, cost_best, exitflag, output ] = chomp_QP( obj.init_traj, obj.boudary_pt_Id,...
                                                                                             obj.cost_func, obj.grad_func, obj.constraints, obj.options );
+                else
+                    disp('Other algorithms not supported...');
                 end
-
             end
             
             obj.solverLog = output;

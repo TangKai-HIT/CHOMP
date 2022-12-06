@@ -1,7 +1,8 @@
 # CHOMP guided by demonstrations
 
-*Note:*
-The codes in `chomp/` are written and improved upon CMU AIRLAB's chomp toolbox.
+*Note:*  
+The codes in `chomp/` are written refering to [CMU AIRLAB's chomp toolbox](https://theairlab.org/research/2016/11/01/opensourceplanning/).  
+However, there are some problems w.r.t the `projected newton method` proposed in CMU's chomp toolbox. The algorithm is actually different from its [corresponding article](https://epubs.siam.org/doi/abs/10.1137/08073812X).  
 
 **3D traj tracking demo requires:**  
 - Peter Coke rvctools
