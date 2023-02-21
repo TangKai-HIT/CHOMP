@@ -1,4 +1,4 @@
-# CHOMP guided by demonstrations
+# CHOMP planning algorithm
 
 *Note:*  
 The codes in `chomp/` are written refering to [CMU AIRLAB's chomp toolbox](https://theairlab.org/research/2016/11/01/opensourceplanning/).  
@@ -28,3 +28,5 @@ Same as above.
 ### 4. `chomp_2DPoint3_fixedbound2`
 As shown in `chomp_2DPoint3_fixedbound.m`, both velocity and acceleration boundary conditions of the deformed trajectory can be held by using **3-order forward differetial matrix** as the metric.  
 This demo shows the combinition of using 3-order forward differetial metric and 1-order smoothness cost function (equivalent to **shortest path**)
+
+### 5. `chomp_test2D_robot`
